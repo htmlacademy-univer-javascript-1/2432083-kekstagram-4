@@ -1,4 +1,4 @@
-import { COMMENT_LINES, NAMES, AVATAR_COUNT, COMMENT_COUNT } from './constants.js';
+import { COMMENT_LINES, NAMES, AVATAR_COUNT, COMMENT_COUNT, DESCRIPTIONS, LIKE_MIN_COUNT, LIKE_MAX_COUNT, PICTURE_COUNT } from './constants.js';
 import { getRandomInteger, getRandomArrayElement, createIdGenerator } from './utils.js';
 
 const generateCommentId = createIdGenerator();
