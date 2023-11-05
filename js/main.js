@@ -1,5 +1,3 @@
 import { getPictures } from './data.js';
-
 const pictures = getPictures();
-
 console.log(pictures); // Вывод данных в консоль для проверки
