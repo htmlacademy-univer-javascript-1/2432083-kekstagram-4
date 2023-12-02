@@ -1,3 +1,4 @@
+
 import { showBigPicture } from './big-picture.js';
 
 const thumbnailClickHandlerGenerator = (photos) => (evt) => {
@@ -30,3 +31,4 @@ export const createThumbnails = (photos) => {
   const picturesContainer = document.querySelector('.pictures');
   picturesContainer.append(fragment);
 };
+
