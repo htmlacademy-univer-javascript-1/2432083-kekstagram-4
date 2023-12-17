@@ -1,10 +1,12 @@
 
 import { showBigPicture } from './big-picture.js';
 
-const thumbnailClickHandlerGenerator = (photos) => (evt) => {
-  evt.preventDefault();
-  const photoId = evt.target.parentNode.dataset.photoId;
-  showBigPicture(photos.find((photo) => photo.id === parseInt(photoId, 10)));
+const getThumbnailClickHandler = (photos) => (evt) => {
+  if (evt.target.matches('img')) {
+    evt.preventDefault();
+    const photoId = evt.target.parentNode.dataset.photoId;
+    showBigPicture(photos.find((photo) => photo.id === parseInt(photoId, 10)));
+  }
 };
 
 const createThumbnail = (template, photo) => {
