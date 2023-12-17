@@ -2,7 +2,7 @@ export const PICTURE_COUNT = 25;
 export const AVATAR_COUNT = 6;
 export const LIKE_MIN_COUNT = 15;
 export const LIKE_MAX_COUNT = 200;
-export const COMMENT_COUNT = 20;
+export const COMMENT_COUNT = 14;
 export const COMMENT_LINES = [
   'Хочеца тоже :((',
   'А на какую камеру снимаешь?',
