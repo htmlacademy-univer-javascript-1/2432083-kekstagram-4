@@ -1,4 +1,6 @@
-import { isEscapeKey } from './utils.js';
+import { isEscapeKey } from './utils/misc.js';
+import {initScaler, resetScale} from './scaler.js';
+import { initEffects, resetEffects } from './effects.js';
 
 const uploadImageInput = document.querySelector('#upload-file');
 const uploadImageOverlay = document.querySelector('.img-upload__overlay');
