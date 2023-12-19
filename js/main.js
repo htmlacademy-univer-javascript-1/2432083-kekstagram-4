@@ -1,8 +1,9 @@
-
-import { getPictures } from './data.js';
 import { createThumbnails } from './thumbnails.js';
+import { configureUploadImageForm } from './form.js';
+import { loadPhotos } from './api.js';
+import { showAlert } from './utils/misc.js';
 
-renderThumbnails(getPictures());
-const pictures = getPictures();
-
-console.log(pictures); // Вывод данных в консоль для проверки
+loadPhotos()
+  .then((data) => createThumbnails(data))
+  .catch((err) => showAlert(err.message));
+configureUploadImageForm();
