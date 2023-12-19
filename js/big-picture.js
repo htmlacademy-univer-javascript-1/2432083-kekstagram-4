@@ -50,12 +50,15 @@ const fillTemplate = (photo) => {
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
   bigPicture.querySelector('.social__caption').textContent = photo.description;
-
+  
+  const onModalEscKeydown = (evt) => onEscKeyDown(evt, closeBigPicture);
+  
   commentsElement.innerHTML = '';
   onShowMoreClick = getShowMoreClickHandler(photo.comments);
   onShowMoreClick();
 };
 
+document.removeEventListener('keydown', onModalEscKeydown);
 function closeBigPicture() {
   document.body.classList.remove('modal-open');
   bigPicture.classList.add('hidden');
@@ -66,6 +69,7 @@ function closeBigPicture() {
 }
 
 export function showBigPicture(photo) {
+  document.addEventListener('keydown', onModalEscKeydown);
   fillTemplate(photo);
 
   bigPicture.classList.remove('hidden');
