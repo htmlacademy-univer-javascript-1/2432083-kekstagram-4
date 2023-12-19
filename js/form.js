@@ -1,3 +1,4 @@
+
 import { onEscKeyDown, isEscapeKey } from './utils/misc.js';
 import { initScaler, resetScale } from './scaler.js';
 import { initEffects, resetEffects } from './effects.js';
@@ -102,6 +103,8 @@ const onImageSelect = () => {
   };
   reader.readAsDataURL(uploadImageInput.files[0]);
 
+  resetScale();
+  resetEffects();
   const uploadCancelBotton = document.querySelector('#upload-cancel');
   uploadCancelBotton.addEventListener('click', onImageLoadCloseClick);
   document.addEventListener('keydown', onImageLoadEscKeyDown);
