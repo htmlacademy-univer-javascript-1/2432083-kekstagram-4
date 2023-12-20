@@ -1,19 +1,24 @@
 const ALERT_SHOW_TIME = 5000;
+
 export const createIdGenerator = () => {
   let lastId = 0;
+
   return function () {
     lastId += 1;
     return lastId;
   };
 };
+
 export const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
+
 export const createUniqueRandomIdGenerator = (min, max) => {
   const generatedValues = [];
+
   return function () {
     let currentValue = getRandomInteger(min, max);
     if (generatedValues.length >= (max - min + 1)) {
@@ -26,8 +31,11 @@ export const createUniqueRandomIdGenerator = (min, max) => {
     return currentValue;
   };
 };
+
 export const getRandomElement = (array) => array[getRandomInteger(0, array.length - 1)];
+
 export const isEscapeKey = (evt) => evt.key === 'Escape';
+
 export const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -39,37 +47,19 @@ export const showAlert = (message) => {
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
   alertContainer.style.backgroundColor = 'red';
+
   alertContainer.textContent = message;
+
   document.body.append(alertContainer);
+
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
+
 export const onEscKeyDown = (evt, cb) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     cb();
   }
 };
-
-export function debounce (callback, timeoutDelay = 500) {
-  let timeoutId;
-
-  return (...rest) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
-  };
-}
-
-export function throttle (callback, delayBetweenFrames) {
-  let lastTime = 0;
-
-  return (...rest) => {
-    const now = new Date();
-
-    if (now - lastTime >= delayBetweenFrames) {
-      callback.apply(this, rest);
-      lastTime = now;
-    }
-  };
-}
