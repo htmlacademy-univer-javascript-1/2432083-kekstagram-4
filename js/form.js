@@ -1,4 +1,3 @@
-
 import { onEscKeyDown, isEscapeKey } from './utils/misc.js';
 import { initScaler, resetScale } from './scaler.js';
 import { initEffects, resetEffects } from './effects.js';
@@ -25,10 +24,10 @@ const onImageLoadCloseClick = () => {
 };
 
 const onImageLoadEscKeyDown = (evt) => onEscKeyDown(evt, closeImageLoadModal);
-const onImageLoadEscKeyDown = (evt) => {
+
+const onInputKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeImageLoadModal();
+    evt.stopPropagation();
   }
 };
 
@@ -41,21 +40,6 @@ const unblockSubmitButton = () => {
   formSubmitButton.textContent = 'Опубликовать';
   formSubmitButton.disabled = false;
 };
-
-const onInputKeyDown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.stopPropagation();
-  }
-};
-
-function closeImageLoadModal () {
-  uploadImageForm.reset();
-
-  document.body.classList.remove('modal-open');
-  uploadImageOverlay.classList.add('hidden');
-
-  document.removeEventListener('keydown', onImageLoadEscKeyDown);
-}
 
 const onImageSubmit = (evt) => {
   evt.preventDefault();
@@ -125,4 +109,7 @@ export const configureUploadImageForm = () => {
   commentInput.addEventListener('keydown', onInputKeyDown);
 
   pristine.addValidator(hashtagInput, validateHashtags, 'Неверный формат хэштэгов');
+
+  initScaler();
+  initEffects();
 };

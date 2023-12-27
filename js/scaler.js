@@ -1,4 +1,4 @@
-import { Range } from './range.js';
+import { Range } from './utils/range.js';
 
 const imageUploadPreviewContainer = document.querySelector(
   '.img-upload__preview'

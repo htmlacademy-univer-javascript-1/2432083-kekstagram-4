@@ -12,6 +12,7 @@ const getThumbnailClickHandler = () => (evt) => {
     showBigPicture(photos.find((photo) => photo.id === parseInt(photoId, 10)));
   }
 };
+
 const createThumbnail = (template, photo) => {
   const thumbnailElement = template.querySelector('.picture').cloneNode(true);
   thumbnailElement.querySelector('.picture__img').src = photo.url;

@@ -9,12 +9,6 @@ const liElement = commentsElement.querySelector('li');
 const onCloseButtonClick = () => {
   closeBigPicture();
 };
-const onEscKeyDown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeBigPicture();
-  }
-};
 
 const getShowMoreClickHandler = (comments) => {
   let commentsShowed = 0;
@@ -50,26 +44,24 @@ const fillTemplate = (photo) => {
   bigPicture.querySelector('.big-picture__img img').src = photo.url;
   bigPicture.querySelector('.likes-count').textContent = photo.likes;
   bigPicture.querySelector('.social__caption').textContent = photo.description;
-  
-  const onModalEscKeydown = (evt) => onEscKeyDown(evt, closeBigPicture);
-  
+
   commentsElement.innerHTML = '';
   onShowMoreClick = getShowMoreClickHandler(photo.comments);
   onShowMoreClick();
 };
 
-document.removeEventListener('keydown', onModalEscKeydown);
+const onModalEscKeydown = (evt) => onEscKeyDown(evt, closeBigPicture);
+
 function closeBigPicture() {
   document.body.classList.remove('modal-open');
   bigPicture.classList.add('hidden');
 
   closeButtonElement.removeEventListener('click', onCloseButtonClick);
   showMoreElement.removeEventListener('click', onShowMoreClick);
-  document.removeEventListener('keydown', onEscKeyDown);
+  document.removeEventListener('keydown', onModalEscKeydown);
 }
 
-export function showBigPicture(photo) {
-  document.addEventListener('keydown', onModalEscKeydown);
+export const showBigPicture = (photo) => {
   fillTemplate(photo);
 
   bigPicture.classList.remove('hidden');
@@ -77,5 +69,5 @@ export function showBigPicture(photo) {
 
   showMoreElement.addEventListener('click', onShowMoreClick);
   closeButtonElement.addEventListener('click', onCloseButtonClick);
-  document.addEventListener('keydown', onEscKeyDown);
-}
+  document.addEventListener('keydown', onModalEscKeydown);
+};
